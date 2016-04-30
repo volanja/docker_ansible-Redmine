@@ -8,7 +8,8 @@ ENV RUBY_VERSION 2.2.3
 RUN rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm \
 && yum update -y \
 && yum install -y ansible \
-&& yum install -y passwd openssh openssh-server openssh-clients initscripts sudo
+&& yum install -y passwd openssh openssh-server openssh-clients initscripts sudo \
+&& yum install -y vim git-all \
 
 ### SSHD
 RUN sed -ri 's/#PermitRootLogin yes/PermitRootLogin yes/g' /etc/ssh/sshd_config \
@@ -17,15 +18,18 @@ RUN sed -ri 's/#PermitRootLogin yes/PermitRootLogin yes/g' /etc/ssh/sshd_config 
 
 ## Ruby
 RUN yum groupinstall -y "Development tools" \
-&& yum install -y tar libffi-devel openssl openssl-devel readline-devel readline compat-readline5 libxml2-devel libxslt-devel libyaml-devel git
+&& yum install -y tar libffi-devel openssl openssl-devel readline-devel readline compat-readline5 libxml2-devel libxslt-devel libyaml-devel git \
+## Install ImageMagick
+ImageMagick ImageMagick-devel ipa-pgothic-fonts
 
 ### Install Ruby
 RUN curl -O http://ftp.ruby-lang.org/pub/ruby/ruby-$RUBY_VERSION.tar.gz \
 && tar zvxf ruby-$RUBY_VERSION.tar.gz \
 && pushd ruby-$RUBY_VERSION \
-&& ./configure \
-&& make && make install && popd \
+&& ./configure && make && make install \
+&& popd \
 && rm -rf ruby-$RUBY_VERSION.tar.gz ruby-$RUBY_VERSION
+
 
 ### Install bundler
 RUN gem update --system \
