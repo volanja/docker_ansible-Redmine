@@ -18,9 +18,7 @@ RUN sed -ri 's/#PermitRootLogin yes/PermitRootLogin yes/g' /etc/ssh/sshd_config 
 
 ## Ruby
 RUN yum groupinstall -y "Development tools" \
-&& yum install -y tar libffi-devel openssl openssl-devel readline-devel readline compat-readline5 libxml2-devel libxslt-devel libyaml-devel git \
-## Install ImageMagick
-ImageMagick ImageMagick-devel ipa-pgothic-fonts
+&& yum install -y tar libffi-devel openssl openssl-devel readline-devel readline compat-readline5 libxml2-devel libxslt-devel libyaml-devel git ImageMagick ImageMagick-devel ipa-pgothic-fonts
 
 ### Install Ruby
 RUN curl -O http://ftp.ruby-lang.org/pub/ruby/ruby-$RUBY_VERSION.tar.gz \
