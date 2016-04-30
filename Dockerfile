@@ -9,7 +9,7 @@ RUN rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noar
 && yum update -y \
 && yum install -y ansible \
 && yum install -y passwd openssh openssh-server openssh-clients initscripts sudo \
-&& yum install -y vim git-all \
+&& yum install -y vim git-all
 
 ### SSHD
 RUN sed -ri 's/#PermitRootLogin yes/PermitRootLogin yes/g' /etc/ssh/sshd_config \
