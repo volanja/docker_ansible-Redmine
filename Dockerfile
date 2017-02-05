@@ -2,7 +2,7 @@ FROM centos:centos6
 
 MAINTAINER volanja "https://github.com/volanja"
 
-ENV RUBY_VERSION 2.2.3
+ENV RUBY_VERSION 2.3.3
 
 ### Packages
 RUN rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm \
